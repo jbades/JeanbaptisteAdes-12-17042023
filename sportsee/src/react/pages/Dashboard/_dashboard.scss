@@ -1,3 +1,20 @@
+main {
+   width: 100%;
+   padding: 0 3em;
+}
+
+.h1 {
+
+   &--custom {
+      font-size: 48px;
+   }
+
+   &__firstname {
+      font-size: 48px;
+      color: #FF0101;
+   }
+}
+
 .section {
    &__main {
     display: flex;

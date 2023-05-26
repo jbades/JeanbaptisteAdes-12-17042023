@@ -1,21 +1,64 @@
-const mockedGetUserData  = `{"data":{"id":12,"userInfos":{"firstName":"Karl","lastName":"Dovineau","age":31},"todayScore":0.12,"keyData":{"calorieCount":1930,"proteinCount":155,"carbohydrateCount":290,"lipidCount":50}}}`
+export default function fetchData(id) {
+    return new Promise((resolve, reject) => {
+      const USE_MOCK = true;
+  
+      if (USE_MOCK) {
+        const url = `/mock/user/${id}.json`;
+        fetch(url)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log(data);
+            resolve(data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            reject(error);
+          });
+      } else {
+        // Handle the non-mock case
+      }
+    });
+  }
 
-function fetchData (endpoint, options) {
-    const isMock = process.env.USE_MOCK === true
-
-    if (isMock) {
-        console.log("call mock")
-        return JSON.parse(mockedGetUserData)
-    } else {
-        console.log("call API")
-        fetch('http://localhost:3000/user/18')
-        .then((response) => response.text())
-        .then((body) => {
-            console.log(body);
-            return body;
-        }); 
+// export default function fetchData () {
     
-    }
-}
+//     const endpoint = '../public/mock/user/12.json'
+//     console.log(endpoint)
 
-export default fetchData
+//     const USE_MOCK = true
+
+//     if (USE_MOCK) {
+//         console.log("call mock")
+//         fetch(endpoint)
+//         .then((response) => {
+
+//             if (!response.ok) {
+//                 throw new Error('Error fetching data')
+//               }
+//             return response.json()
+
+//         })
+//         .then((data) => {
+//             console.log(data)
+//             return data
+//         })
+
+//         .catch((error) => {
+//             console.error(error);
+//         })
+        
+//     } else {
+//         console.log("call API")
+//         fetch('http://localhost:3000/user/12')
+//         .then((response) => response.text())
+//         .then((data) => {
+//             console.log(data)
+//             return data
+//         })
+//     } 
+// }

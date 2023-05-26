@@ -8,14 +8,8 @@ import {
 import './styles/sass/_main.scss';
 import Dashboard from './react/pages/Dashboard/Dashboard';
 import Error from './react/pages/Error/Error';
-import fetchData from './data';
 import Header from './react/layouts/Header/Header';
 import Sidebar from './react/layouts/Sidebar/Sidebar';
-
-process.env.USE_MOCK = 'false'
-
-fetchData()
-
 
 const domNode = document.getElementById('root')
 const root = createRoot(domNode)
