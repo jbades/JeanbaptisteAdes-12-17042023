@@ -1,0 +1,23 @@
+{
+    "calorieCount": {
+      "img": "../../../src/assets/calories-icon.svg",
+      "unit": "kCal",
+      "name": "Calories"
+    },
+    "proteinCount": {
+      "img": "../../../src/assets/protein-icon.svg",
+      "unit": "g",
+      "name": "Proteines"
+    },
+    "carbohydrateCount": {
+      "img": "../../../src/assets/carbs-icon.svg",
+      "unit": "g",
+      "name": "Glucides"
+    },
+    "lipidCount": {
+      "img": "../../../src/assets/fat-icon.svg",
+      "unit": "g",
+      "name": "Lipides"
+    }
+  }
+  

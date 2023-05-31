@@ -3,6 +3,14 @@ main {
    padding: 0 3em;
 }
 
+.dashboard {
+   &__wrapper {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 50px;
+   }
+}
+
 .h1 {
 
    &--custom {
@@ -12,6 +20,26 @@ main {
    &__firstname {
       font-size: 48px;
       color: #FF0101;
+   }
+}
+
+.loading-state {
+   padding: 40px 20px;
+}
+
+.metrics {
+   &__wrapper {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 20px;
+   }
+}
+
+.dynamic-metrics {
+   &__wrapper {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 20px;
    }
 }
 
