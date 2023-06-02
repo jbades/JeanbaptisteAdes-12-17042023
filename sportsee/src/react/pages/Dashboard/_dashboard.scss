@@ -32,14 +32,23 @@ main {
       display: flex;
       flex-flow: row nowrap;
       gap: 20px;
+      justify-content: space-between;
    }
 }
 
 .dynamic-metrics {
+   &__row2 {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 20px;
+      max-height: 200px;
+   }
+
    &__wrapper {
       display: flex;
       flex-flow: column nowrap;
       gap: 20px;
+      width: 100%;
    }
 }
 

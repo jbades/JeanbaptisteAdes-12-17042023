@@ -26,9 +26,15 @@ export default class User {
             Promise.all(fetchPromises)
                 .then((results) => {
                     const userData = {};
-                    results.forEach((data) => {
-                        Object.assign(userData, data.data);
+                    Object.keys(results).forEach((object) => {
+                        if (!(object in userData)) {
+                            userData[object] = results[object]
+                        } else {
+                            const newKey = `${object}_duplicate_${results}`
+                            userData[newKey] = results[object]
+                        }
                     });
+                    console.log(userData)
                     resolve(userData);
                 })
                 .catch((error) => {

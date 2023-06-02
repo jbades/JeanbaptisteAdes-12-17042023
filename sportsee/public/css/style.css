@@ -1,3 +1,19 @@
+.calorie-card__name {
+  font-size: 13px;
+  font-weight: 400;
+  color: #74798C;
+}
+.calorie-card__value {
+  font-weight: 500;
+}
+.calorie-card__wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 20px;
+  padding: 20px;
+  background-color: #FBFBFB;
+}
+
 .section__main {
   display: flex;
   height: inherit;
