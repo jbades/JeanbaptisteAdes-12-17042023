@@ -4,7 +4,6 @@ function ScorePiechart ({data}) {
   console.log(data)
     return (
       <div>
-        <div>Avant</div>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart width={400} height={400}>
             <Pie 
@@ -14,7 +13,8 @@ function ScorePiechart ({data}) {
               cy={200} 
               innerRadius={40} 
               outerRadius={80} 
-              fill="#82ca9d" />
+              fill="#82ca9d" 
+            />
             <Tooltip />
           </PieChart>
         </ResponsiveContainer>

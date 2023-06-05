@@ -11,6 +11,21 @@ main {
    }
 }
 
+.dynamic-metrics {
+   &__2nd-row {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 20px;
+   }
+
+   &__wrapper {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 20px;
+      width: 100%;
+   }
+}
+
 .h1 {
 
    &--custom {
@@ -36,25 +51,15 @@ main {
    }
 }
 
-.dynamic-metrics {
-   &__row2 {
-      display: flex;
-      flex-flow: row nowrap;
-      gap: 20px;
-      max-height: 200px;
-   }
-
-   &__wrapper {
-      display: flex;
-      flex-flow: column nowrap;
-      gap: 20px;
-      width: 100%;
-   }
-}
-
 .section {
    &__main {
     display: flex;
     height: inherit;
    } 
+}
+
+.static-metrics {
+   &__wrapper {
+      width: auto;
+   }
 }

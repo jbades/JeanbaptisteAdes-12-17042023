@@ -14,11 +14,9 @@ function SessionLinechart ({data}) {
                 bottom: 5,
             }}
             >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="day" />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="sessionLength" stroke="#82ca9d" />
+                <XAxis dataKey="day" />
+                <Tooltip />
+                <Line type="monotone" dataKey="sessionLength" stroke="#ffffff" dot={false} strokeWidth={1.5}/>
             </LineChart>
       </ResponsiveContainer>
     );
