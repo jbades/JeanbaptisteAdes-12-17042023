@@ -1,29 +1,30 @@
-export default function fetchData(id) {
-    return new Promise((resolve, reject) => {
-      const USE_MOCK = true;
+// const USE_MOCK = process.env.USE_MOCK 
+
+// export default function fetchData(id) {
+//     return new Promise((resolve, reject) => {
   
-      if (USE_MOCK) {
-        const url = `/mock/user/${id}.json`;
-        fetch(url)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.json();
-          })
-          .then(data => {
-            console.log(data);
-            resolve(data);
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            reject(error);
-          });
-      } else {
-        // Handle the non-mock case
-      }
-    });
-  }
+//       if (USE_MOCK) {
+//         const url = `/mock/user/${id}.json`;
+//         fetch(url)
+//           .then(response => {
+//             if (!response.ok) {
+//               throw new Error('Network response was not ok');
+//             }
+//             return response.json();
+//           })
+//           .then(data => {
+//             console.log(data);
+//             resolve(data);
+//           })
+//           .catch(error => {
+//             console.error('Error:', error);
+//             reject(error);
+//           });
+//       } else {
+//         // Handle the non-mock case
+//       }
+//     });
+//   }
 
 // export default function fetchData () {
     

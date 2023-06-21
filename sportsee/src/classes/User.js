@@ -4,9 +4,6 @@ import extension from "../data/pathPatch.json"
 const BASE_URL = "http://localhost:3001";
 
 export default class User {
-    constructor (id) {
-        this.id = id 
-    }
 
     fetchData(id) {
         return new Promise((resolve, reject) => {

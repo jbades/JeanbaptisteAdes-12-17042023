@@ -109,6 +109,7 @@ export default function Dashboard() {
                   dataValue={value}
                   unit={calorieData.unit}
                   name={calorieData.name}
+                  image={"/calories-icon.svg"}
                 />
               );
             } else {
