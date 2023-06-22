@@ -45,14 +45,14 @@ export default function Dashboard() {
     fetchData();
   }, [id]);
 
+  console.log(userData)
+
   // const pieArray = [
   //   { name: "Score", value: userData[0].data.score},
   //   { name: "!Score", value: 1 - userData[0].data.score}
   // ]
 
-  const [minWeight, maxWeight] = userData && userData[1] && userData[1].data.sessions ? calculateWeightRange(userData[1].data.sessions) : [null, null];
-  console.log([minWeight, maxWeight])
-
+  const [minWeight, maxWeight] = userData && userData[1] && userData[1].sessions ? calculateWeightRange(userData[1].sessions) : [null, null];
 
   if (!userData) {
     return <div className="loading-state">Loading...</div>;
@@ -62,7 +62,7 @@ export default function Dashboard() {
     <div className="dashboard__wrapper">
       <div className="welcome__wrapper">
         <h1 className="h1--custom">
-          Bonjour <span className="h1__firstname">{userData[0].data.userInfos.firstName}</span>
+          Bonjour <span className="h1__firstname">{userData[0].userInfos.firstName}</span>
         </h1>
         <div>Félicitations ! Vous avez explosé vos objectifs hier</div>
       </div>
@@ -73,7 +73,7 @@ export default function Dashboard() {
           <div className="activity-barchart__wrapper">
           <div>Activité quotidienne</div>
           <ActivityBarchart
-            data= {userData[1].data.sessions}
+            data= {userData[1].sessions}
             minWeight= {minWeight}
             maxWeight= {maxWeight}
           />
@@ -83,12 +83,12 @@ export default function Dashboard() {
             <div className="session-linechart__wrapper">
               <div>Durée moyenne des sessions</div>
               <SessionLinechart 
-                data= {userData[3].data.sessions}
+                data= {userData[3].sessions}
               />
             </div>
             <div className="skills-radarchart__wrapper">
               <SkillsRadarchart 
-                data= {userData[2].data.data}
+                data= {userData[2].data}
               />
             </div>
             <div className="score-piechart__wrapper">
@@ -99,7 +99,7 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="static-metrics__wrapper">
-          {Object.entries(userData[0].data.keyData).map(([key, value]) => {
+          {Object.entries(userData[0].keyData).map(([key, value]) => {
             const calorieData = caloriesData[key];
             if (calorieData && calorieData.img) {
               return (
@@ -109,7 +109,7 @@ export default function Dashboard() {
                   dataValue={value}
                   unit={calorieData.unit}
                   name={calorieData.name}
-                  image={"/calories-icon.svg"}
+                  image={calorieData.img}
                 />
               );
             } else {

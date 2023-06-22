@@ -1,6 +1,7 @@
+import { useActionData } from "react-router-dom";
 import extension from "../data/pathPatch.json"
 
-// const USE_MOCK = true; process.env.USE_MOCK
+// const REACT_APP_USE_MOCK = true; process.env.REACT_APP_USE_MOCK
 const BASE_URL = "http://localhost:3001";
 
 export default class User {
@@ -9,7 +10,8 @@ export default class User {
         return new Promise((resolve, reject) => {
             const fetchPromises = Object.values(extension.patch).map((slug) => {
                 let url = `/mock/user/${id + slug}.json`;
-                if (!process.env.USE_MOCK) url = `${BASE_URL}/user/${id + slug}`;
+                if (process.env.REACT_APP_USE_MOCK !== "true") url = `${BASE_URL}/user/${id + slug}`;
+                // console.log(url) // checking server or mock rooting
                 
                 return fetch(url)
                     .then((response) => {
@@ -23,15 +25,15 @@ export default class User {
             Promise.all(fetchPromises)
                 .then((results) => {
                     const userData = {};
-                    Object.keys(results).forEach((object) => {
+                    results.forEach((result, index) => {
+                        const object = Object.keys(extension.patch)[index]
                         if (!(object in userData)) {
-                            userData[object] = results[object]
+                            userData[object] = result.data
                         } else {
-                            const newKey = `${object}_duplicate_${results}`
-                            userData[newKey] = results[object]
+                            const newKey = `${object}_duplicate_${result}`
+                            userData[newKey] = result.data
                         }
                     });
-                    console.log(userData)
                     resolve(userData);
                 })
                 .catch((error) => {
