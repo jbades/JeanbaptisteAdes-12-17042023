@@ -51,7 +51,7 @@ export default function Dashboard() {
   //   { name: "!Score", value: 1 - userData.general.todayScore}
   // ]
 
-  // const [minWeight, maxWeight] = userData && userData.activity && userData.activity.sessions ? calculateWeightRange(userData.activity.sessions) : [null, null];
+  const [minWeight, maxWeight] = userData && userData.activity && userData.activity.sessions ? calculateWeightRange(userData.activity.sessions) : [null, null];
 
   if (!userData) {
     return <div className="loading-state">Loading...</div>;
@@ -71,11 +71,11 @@ export default function Dashboard() {
 
           <div className="activity-barchart__wrapper">
           <div>Activité quotidienne</div>
-          {/* <ActivityBarchart
+          <ActivityBarchart
             data= {userData.activity.sessions}
             minWeight= {minWeight}
             maxWeight= {maxWeight}
-          /> */}
+          />
         </div>
           )}
           <div className="dynamic-metrics__2nd-row">
