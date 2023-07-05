@@ -30,30 +30,38 @@ function calculateWeightRange(data) {
 
 export default function Dashboard() {
   const { id } = useParams();
-  const [userData] = useState(new User());
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    userData.fetchData(id)
+    const fetchUserData = async () => {
+      try {
+        const user = new User();
+        await user.fetchData(id);
+        setUserData(user);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserData();
   }, [id]);
 
-  const pieArray = [
-    { name: "Score", value: userData.general.todayScore},
-    { name: "!Score", value: 1 - userData.general.todayScore}
-  ]
+  // const pieArray = [
+  //   { name: "Score", value: userData.general.todayScore},
+  //   { name: "!Score", value: 1 - userData.general.todayScore}
+  // ]
 
-  const [minWeight, maxWeight] = userData && userData.activity && userData.activity.sessions ? calculateWeightRange(userData.activity.sessions) : [null, null];
+  // const [minWeight, maxWeight] = userData && userData.activity && userData.activity.sessions ? calculateWeightRange(userData.activity.sessions) : [null, null];
 
   if (!userData) {
     return <div className="loading-state">Loading...</div>;
   }
 
-  console.log(pieArray)
-
   return (
     <div className="dashboard__wrapper">
       <div className="welcome__wrapper">
         <h1 className="h1--custom">
-          Bonjour <span className="h1__firstname">{userData?.general?.userInfos?.firstName}</span>
+          Bonjour <span className="h1__firstname">{userData?.general?.userInfos?.firstName || ''}</span>
         </h1>
         <div>Félicitations ! Vous avez explosé vos objectifs hier</div>
       </div>
@@ -63,11 +71,11 @@ export default function Dashboard() {
 
           <div className="activity-barchart__wrapper">
           <div>Activité quotidienne</div>
-          <ActivityBarchart
+          {/* <ActivityBarchart
             data= {userData.activity.sessions}
             minWeight= {minWeight}
             maxWeight= {maxWeight}
-          />
+          /> */}
         </div>
           )}
           <div className="dynamic-metrics__2nd-row">
@@ -83,9 +91,9 @@ export default function Dashboard() {
               />
             </div>
             <div className="score-piechart__wrapper">
-              <ScorePiechart
+              {/* <ScorePiechart
                 data= {pieArray}
-              />
+              /> */}
             </div>
           </div>
         </div>

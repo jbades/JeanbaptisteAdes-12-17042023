@@ -39,15 +39,13 @@ export default class User {
             
             Promise.all(fetchPromises)
             .then((results) => {
-                // results.forEach((object) => {
-                //     const key = Object.keys(object)[0]
-                //     this[key] = object[key]
-                // });
+              const newData = {};
               for (const item of results) {
                 const key = Object.keys(item)[0];
-                this[key] = item[key];
+                newData[key] = item[key];
               }
-               resolve();
+              Object.assign(this, newData);
+              resolve(this);
             })
             .catch((error) => {
               console.error('Error:', error);
