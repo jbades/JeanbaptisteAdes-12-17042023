@@ -1,13 +1,18 @@
+// React items import
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import User from "../../../classes/User";
+// CalorieCard data enrichment
+import caloriesData from "../../../data/caloriesData.json";
+// components import
 import ActivityBarchart from "../../components/ActivityBarchart/ActivityBarchart"
 import CalorieCard from "../../components/CalorieCard/CalorieCard";
-import caloriesData from "../../../data/caloriesData.json";
 import ScorePiechart from "../../components/ScorePiechart/ScorePiechart";
 import SessionLinechart from "../../components/SessionLinechart/SessionLinechart";
 import SkillsRadarchart from "../../components/SkillsRadarchart/SkillsRadarchart";
 
+import User from "../../../classes/User";
+
+// creating a range buffer for ActivityBarchart component
 function calculateWeightRange(data) {
   let minValue = Infinity;
   let maxValue = -Infinity;
@@ -25,44 +30,30 @@ function calculateWeightRange(data) {
 
 export default function Dashboard() {
   const { id } = useParams();
-  const [userData, setUserData] = useState(null);
+  const [userData] = useState(new User());
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const user = await new User(id);
-        const data = await user.fetchData(id);
-        if (data) {
-          setUserData(data);
-        } else {
-          console.error("Invalid data format");
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
+    userData.fetchData(id)
   }, [id]);
 
-  console.log(userData)
+  const pieArray = [
+    { name: "Score", value: userData.general.todayScore},
+    { name: "!Score", value: 1 - userData.general.todayScore}
+  ]
 
-  // const pieArray = [
-  //   { name: "Score", value: userData[0].data.score},
-  //   { name: "!Score", value: 1 - userData[0].data.score}
-  // ]
-
-  const [minWeight, maxWeight] = userData && userData[1] && userData[1].sessions ? calculateWeightRange(userData[1].sessions) : [null, null];
+  const [minWeight, maxWeight] = userData && userData.activity && userData.activity.sessions ? calculateWeightRange(userData.activity.sessions) : [null, null];
 
   if (!userData) {
     return <div className="loading-state">Loading...</div>;
   }
 
+  console.log(pieArray)
+
   return (
     <div className="dashboard__wrapper">
       <div className="welcome__wrapper">
         <h1 className="h1--custom">
-          Bonjour <span className="h1__firstname">{userData[0].userInfos.firstName}</span>
+          Bonjour <span className="h1__firstname">{userData?.general?.userInfos?.firstName}</span>
         </h1>
         <div>Félicitations ! Vous avez explosé vos objectifs hier</div>
       </div>
@@ -73,7 +64,7 @@ export default function Dashboard() {
           <div className="activity-barchart__wrapper">
           <div>Activité quotidienne</div>
           <ActivityBarchart
-            data= {userData[1].sessions}
+            data= {userData.activity.sessions}
             minWeight= {minWeight}
             maxWeight= {maxWeight}
           />
@@ -83,23 +74,23 @@ export default function Dashboard() {
             <div className="session-linechart__wrapper">
               <div>Durée moyenne des sessions</div>
               <SessionLinechart 
-                data= {userData[3].sessions}
+                data= {userData.averagesessions.sessions}
               />
             </div>
             <div className="skills-radarchart__wrapper">
               <SkillsRadarchart 
-                data= {userData[2].data}
+                data= {userData.performance.data}
               />
             </div>
             <div className="score-piechart__wrapper">
-              {/* <ScorePiechart
+              <ScorePiechart
                 data= {pieArray}
-              /> */}
+              />
             </div>
           </div>
         </div>
         <div className="static-metrics__wrapper">
-          {Object.entries(userData[0].keyData).map(([key, value]) => {
+          {Object.entries(userData.general.keyData).map(([key, value]) => {
             const calorieData = caloriesData[key];
             if (calorieData && calorieData.img) {
               return (
