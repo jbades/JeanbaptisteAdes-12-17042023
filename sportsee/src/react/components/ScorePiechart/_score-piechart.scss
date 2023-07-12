@@ -1,6 +1,36 @@
+.recharts-wrapper.piechart--wrapper {
+    transform: rotate(270deg);
+}
+
 .score-piechart {
+    &__message {
+        font-size: 15px;
+        color: #777777;
+    }
+
+    &__message-wrapper {
+        position: absolute;
+        width: 50%;
+        top: 45%;
+        left: 26%;
+        text-align: center;
+    }
+
+    &__percentage {
+        font-weight: 500;
+        font-size: 22px;
+    }
+
+    &__title {
+        font-size: 15px;
+        font-weight: 500;
+    }
+
     &__wrapper {
+        position: relative;
         width: 33%;
         height: 25vh;
+        background-color: #FBFBFB;
+        padding: 20px;
     }
 }

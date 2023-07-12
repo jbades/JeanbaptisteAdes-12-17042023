@@ -1,23 +1,24 @@
 import extension from "../data/pathPatch.json"
+import weekday from "../data/sessionAddonData.json"
 
 // const REACT_APP_USE_MOCK = true; process.env.REACT_APP_USE_MOCK
 const BASE_URL = "http://localhost:3001";
 
 export default class User {
-    constructor() {
-        this.general = {}
-        this.general.id = 0
-        this.general.userInfos ={"firstName":null,"lastName":null,"age":0}
-        this.general.todayScore = 0
-        this.general.keyData = {"calorieCount":0,"proteinCount":0,"carbohydrateCount":0,"lipidCount":0}
-        this.activity = {}
-        this.activity.sessions = []
-        this.performance = {}
-        this.performance.kind = {}
-        this.performance.data = []
-        this.averagesessions = {}
-        this.averagesessions.sessions = []
-    }
+    // constructor() {
+    //     this.general = {}
+    //     this.general.id = 0
+    //     this.general.userInfos ={"firstName":null,"lastName":null,"age":0}
+    //     this.general.todayScore = []
+    //     this.general.keyData = {"calorieCount":0,"proteinCount":0,"carbohydrateCount":0,"lipidCount":0}
+    //     this.activity = {}
+    //     this.activity.sessions = []
+    //     this.performance = {}
+    //     this.performance.kind = {}
+    //     this.performance.data = []
+    //     this.averagesessions = {}
+    //     this.averagesessions.sessions = []
+    // }
 
     fetchData(id) {
         return new Promise((resolve, reject) => {
@@ -52,5 +53,35 @@ export default class User {
               reject(error);
             });
         })
-    }      
+    }
+
+    formatAverageSessionData() {
+        const formattedObject = {}
+        this.averagesessions.sessions.map((object) => {
+            const key = object.day
+            formattedObject[key] = { ...object, day: Object.values(weekday)[key] };
+            return formattedObject
+        })
+        Object.assign(this.averagesessions.sessions, formattedObject)
+        return this.averagesessions.sessions
+    }
+
+    formatGeneralData() {
+        this.general.todayScore =  
+            [
+                { name: "Score", value: this.general.todayScore},
+                { name: "!Score", value: 1 - this.general.todayScore}
+            ];
+        return this.general.todayScore
+    }
+
+    formatPerformanceData() {
+        const formattedObject = {}
+        this.performance.data.map((object, index) => {
+            formattedObject[index] = { ...object, kind: this.performance.kind[object.kind] };
+            return formattedObject
+        })
+        Object.assign(this.performance.data, formattedObject)
+        return this.performance.data
+    }
 }

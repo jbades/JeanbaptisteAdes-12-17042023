@@ -1,7 +1,20 @@
+text.recharts-text.recharts-polar-angle-axis-tick-value {
+    fill: #ffffff;
+
+    tspan {
+        font-size: 12px;
+    }
+}
+
+.recharts-polar-grid-angle line {
+    display: none;
+}
+
 .skills-radarchart {
     &__wrapper {
         width: 33%;
         height: 25vh;
         background-color: #282D30;
+        padding: 20px;
     }
 }

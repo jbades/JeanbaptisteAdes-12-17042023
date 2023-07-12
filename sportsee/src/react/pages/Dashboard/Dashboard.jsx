@@ -1,4 +1,4 @@
-// React items import
+// React import
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 // CalorieCard data enrichment
@@ -37,7 +37,11 @@ export default function Dashboard() {
       try {
         const user = new User();
         await user.fetchData(id);
+        await user.formatGeneralData();
+        await user.formatPerformanceData();
+        await user.formatAverageSessionData();
         setUserData(user);
+        console.log(user)
       } catch (error) {
         console.error(error);
       }
@@ -45,11 +49,6 @@ export default function Dashboard() {
 
     fetchUserData();
   }, [id]);
-
-  // const pieArray = [
-  //   { name: "Score", value: userData.general.todayScore},
-  //   { name: "!Score", value: 1 - userData.general.todayScore}
-  // ]
 
   const [minWeight, maxWeight] = userData && userData.activity && userData.activity.sessions ? calculateWeightRange(userData.activity.sessions) : [null, null];
 
@@ -63,14 +62,14 @@ export default function Dashboard() {
         <h1 className="h1--custom">
           Bonjour <span className="h1__firstname">{userData?.general?.userInfos?.firstName || ''}</span>
         </h1>
-        <div>Félicitations ! Vous avez explosé vos objectifs hier</div>
+        <div>Félicitations ! Vous avez explosé vos objectifs hier  👏</div>
       </div>
       <div className="metrics__wrapper">
         <div className="dynamic-metrics__wrapper">
           {userData && (
 
           <div className="activity-barchart__wrapper">
-          <div>Activité quotidienne</div>
+          <div className="activity-barchart__title">Activité quotidienne</div>
           <ActivityBarchart
             data= {userData.activity.sessions}
             minWeight= {minWeight}
@@ -80,20 +79,25 @@ export default function Dashboard() {
           )}
           <div className="dynamic-metrics__2nd-row">
             <div className="session-linechart__wrapper">
-              <div>Durée moyenne des sessions</div>
+              <div className="session-linechart__title">Durée moyenne des sessions</div>
               <SessionLinechart 
                 data= {userData.averagesessions.sessions}
               />
             </div>
-            <div className="skills-radarchart__wrapper">
-              <SkillsRadarchart 
-                data= {userData.performance.data}
-              />
+    
+            <div className="skills-radarchart__wrapper"> 
+              <SkillsRadarchart data={userData.performance.data} />
             </div>
+            
             <div className="score-piechart__wrapper">
-              {/* <ScorePiechart
-                data= {pieArray}
-              /> */}
+            <div className="score-piechart__title">Score</div>
+              <ScorePiechart
+                data= {userData.general.todayScore}
+              />
+              <div className="score-piechart__message-wrapper">
+                <div className="score-piechart__percentage">{Object.values(userData.general.todayScore[0])[1] * 100}%</div>
+                <div className="score-piechart__message">de votre objectif</div>
+              </div>
             </div>
           </div>
         </div>

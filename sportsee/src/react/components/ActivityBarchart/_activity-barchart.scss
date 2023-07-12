@@ -1,12 +1,74 @@
+.recharts-legend-wrapper {
+    bottom: 197px !important;
+    left: unset !important;
+    right: 50px !important;
+    width: fit-content !important;
+}
+
+.barchart-legend {
+
+    &__bullet {
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        &.kg {
+            background-color: #000000;
+        }
+        &.kcal {
+            background-color: #E60000;
+        }
+    }
+
+    &__item {
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 5px;
+        align-items: center;
+    }
+
+    &__text {
+        font-size: 14px;
+        color: #74798C;
+        &.kg::before {
+            color: red;
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        gap: 40px;
+    }
+}
+
+.barchart-tooltip {
+    &__text {
+        color: #ffffff;
+        font-size: 12px;
+    }
+     
+    &__wrapper {
+        background-color: #E60000;
+        font-size: 12px !important;
+        padding: 10px;
+    }
+}
+
 .activity-barchart {
+    &__chart {
+        display: flex;
+        flex-flow: column-reverse nowrap;
+    }
+
+    &__title {
+        font-size: 15px;
+        font-weight: 500;
+        padding: 20px 0 0 20px;
+    }
+
     &__wrapper {
        width: 100%;
        height: 25vh;
        background-color: #FBFBFB;
-
-       .recharts-legend-wrapper {
-            // top: 0;
-       }
    }
 }
  

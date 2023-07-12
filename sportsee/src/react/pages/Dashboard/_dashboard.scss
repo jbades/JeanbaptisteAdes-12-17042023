@@ -1,6 +1,6 @@
 main {
    width: 100%;
-   padding: 0 3em;
+   padding: 0 4em;
 }
 
 .dashboard {
@@ -22,7 +22,7 @@ main {
       display: flex;
       flex-flow: column nowrap;
       gap: 20px;
-      width: 100%;
+      width: fit-content
    }
 }
 
@@ -30,6 +30,7 @@ main {
 
    &--custom {
       font-size: 48px;
+      margin: 35px 0 15px;
    }
 
    &__firstname {
@@ -48,6 +49,7 @@ main {
       flex-flow: row nowrap;
       gap: 20px;
       justify-content: space-between;
+      width: 75vw;
    }
 }
 
@@ -61,5 +63,8 @@ main {
 .static-metrics {
    &__wrapper {
       width: auto;
+      display: flex;
+      flex-flow: column wrap;
+      gap: 30px;
    }
 }

@@ -1,7 +1,17 @@
 .session-linechart {
-    &__wrapper {
-       width: 33%;
-       height: 25vh;
-       background-color: #FF0000;
-    }
+
+   &__title {
+      color: #fc8588;
+   }
+
+   &__wrapper {
+      width: 33%;
+      height: 25vh;
+      background-color: #FF0000;
+      padding: 20px;
+
+      text.recharts-text.recharts-cartesian-axis-tick-value {
+         fill: #fc8588;
+      }
+   }
  } 

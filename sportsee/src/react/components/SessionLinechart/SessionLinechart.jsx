@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, Bar, Tooltip, ResponsiveContainer } from 'recharts';
 
 function SessionLinechart ({data}) {
     return (
@@ -14,9 +14,10 @@ function SessionLinechart ({data}) {
                 bottom: 5,
             }}
             >
-                <XAxis dataKey="day" />
+                <XAxis dataKey="day" axisLine={false} tickLine={false} />
                 <Tooltip />
                 <Line type="monotone" dataKey="sessionLength" stroke="#ffffff" dot={false} strokeWidth={1.5}/>
+                <Bar xAxisId="day" dataKey="day" fill="#000000"/>
             </LineChart>
       </ResponsiveContainer>
     );
