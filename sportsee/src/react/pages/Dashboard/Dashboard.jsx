@@ -41,7 +41,7 @@ export default function Dashboard() {
         await user.formatPerformanceData();
         await user.formatAverageSessionData();
         setUserData(user);
-        console.log(user)
+        // console.log(user)
       } catch (error) {
         console.error(error);
       }
@@ -79,7 +79,7 @@ export default function Dashboard() {
           )}
           <div className="dynamic-metrics__2nd-row">
             <div className="session-linechart__wrapper">
-              <div className="session-linechart__title">Durée moyenne des sessions</div>
+              {/* <div className="session-linechart__title">Durée moyenne des sessions</div> */}
               <SessionLinechart 
                 data= {userData.averagesessions.sessions}
               />

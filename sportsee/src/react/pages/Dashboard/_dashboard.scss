@@ -1,5 +1,9 @@
+aside {
+   max-width: 100px;
+}
+
 main {
-   width: 100%;
+   width: fit-content;
    padding: 0 4em;
 }
 
@@ -14,15 +18,16 @@ main {
 .dynamic-metrics {
    &__2nd-row {
       display: flex;
-      flex-flow: row nowrap;
+      flex-flow: row wrap;
+      justify-content: space-between;
       gap: 20px;
    }
 
    &__wrapper {
       display: flex;
       flex-flow: column nowrap;
-      gap: 20px;
-      width: fit-content
+      gap: 60px;
+      width: 100%;
    }
 }
 

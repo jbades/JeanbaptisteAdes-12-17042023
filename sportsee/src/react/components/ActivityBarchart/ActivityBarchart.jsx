@@ -9,7 +9,6 @@ function BarchartTooltip ({ active, payload }) {
         </div>
       );
     }
-  
     return null;
 };
   
@@ -18,7 +17,6 @@ const formatYAxisTick = (value) => {
 };
 
 function renderLegend ({ payload }) {
-    console.log(payload)
     return (
         <div className="barchart-legend__wrapper">
             {(payload[0].value === "kilogram") && (<div className='barchart-legend__item'>
@@ -27,7 +25,7 @@ function renderLegend ({ payload }) {
             </div>)}
             {(payload[1].value === "calories") && (<div className='barchart-legend__item'>
             <div className='barchart-legend__bullet kcal'></div>
-                <div className='barchart-legend__text'>Calories (kCal)</div>
+                <div className='barchart-legend__text'>Calories brûlées (kCal)</div>
             </div>)}
         </div>
     );

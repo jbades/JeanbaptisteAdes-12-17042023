@@ -12,9 +12,10 @@ text.recharts-text.recharts-polar-angle-axis-tick-value {
 
 .skills-radarchart {
     &__wrapper {
-        width: 33%;
-        height: 25vh;
+        width: 200px;
+        height: 200px;
         background-color: #282D30;
         padding: 20px;
+        border-radius: 5px;
     }
 }

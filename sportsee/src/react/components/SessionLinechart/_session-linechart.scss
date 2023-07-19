@@ -1,14 +1,31 @@
+g.recharts-layer.recharts-line {
+   transform: scaleX(1.05) scaleY(0.7) translateX(-5px) translateY(80px);
+}
+
+.linechart-tooltip {
+
+   &__text {
+      font-size: 12px;
+      font-weight: 500;
+   }
+
+   &__wrapper {
+      background-color: #ffffff;
+      padding: 1px 10px;
+   }
+}
+
 .session-linechart {
 
    &__title {
       color: #fc8588;
+      padding: 20px 0 0 20px;
    }
 
    &__wrapper {
-      width: 33%;
-      height: 25vh;
+      min-width: 235px;
       background-color: #FF0000;
-      padding: 20px;
+      border-radius: 5px;
 
       text.recharts-text.recharts-cartesian-axis-tick-value {
          fill: #fc8588;

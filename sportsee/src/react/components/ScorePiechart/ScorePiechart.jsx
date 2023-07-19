@@ -19,8 +19,8 @@ function ScorePiechart ({data}) {
               data={data} 
               cx="50%" 
               cy="50%" 
-              innerRadius={70} 
-              outerRadius={80} 
+              innerRadius={60} 
+              outerRadius={70} 
             >
               {data.map((entry, index) =>
                 index === 0 ? (

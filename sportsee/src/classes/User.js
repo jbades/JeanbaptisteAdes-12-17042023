@@ -60,6 +60,7 @@ export default class User {
         this.averagesessions.sessions.map((object) => {
             const key = object.day
             formattedObject[key] = { ...object, day: Object.values(weekday)[key] };
+            // console.log("!!! object.day:", object.day, "!!! formattedObject:", formattedObject)
             return formattedObject
         })
         Object.assign(this.averagesessions.sessions, formattedObject)

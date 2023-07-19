@@ -1,26 +1,40 @@
-import { LineChart, Line, XAxis, Bar, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-function SessionLinechart ({data}) {
+function LinechartTooltip ({ active, payload }) {
+    if (active) {
+        return (
+        <div className="linechart-tooltip__wrapper">
+            <p className="linechart-tooltip__text">{payload[0].value} min</p>
+        </div>
+      );
+    }
+    return null;
+}
+
+export default function SessionLinechart ({data}) {
     return (
         <ResponsiveContainer width="100%" height="100%">
-            <LineChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-            }}
+            <LineChart 
+                data={data} 
+                onMouseMove={(e) => {
+                    console.log(e)
+                    if (e.isTooltipActive === true) {
+                        let metricsContainer = document.querySelector('.recharts-surface')
+                        let rightSideOfBullet = e.activeCoordinate.x
+                        console.log(rightSideOfBullet)
+                    }
+                }}
             >
                 <XAxis dataKey="day" axisLine={false} tickLine={false} />
-                <Tooltip />
-                <Line type="monotone" dataKey="sessionLength" stroke="#ffffff" dot={false} strokeWidth={1.5}/>
-                <Bar xAxisId="day" dataKey="day" fill="#000000"/>
+                <Tooltip content={<LinechartTooltip />} />
+                <Line 
+                    type="monotone" 
+                    dataKey="sessionLength" 
+                    stroke="rgba(255, 255, 255, 0.6)" 
+                    dot={false} strokeWidth={1.5} 
+                    activeDot={{ r: 4, strokeWidth: 4, stroke: "white" }} 
+                />
             </LineChart>
       </ResponsiveContainer>
     );
     }
-  
-  export default SessionLinechart
