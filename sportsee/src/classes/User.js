@@ -59,8 +59,7 @@ export default class User {
         const formattedObject = {}
         this.averagesessions.sessions.map((object) => {
             const key = object.day
-            formattedObject[key] = { ...object, day: Object.values(weekday)[key] };
-            // console.log("!!! object.day:", object.day, "!!! formattedObject:", formattedObject)
+            formattedObject[key - 1] = { ...object, day: Object.values(weekday)[key - 1] };
             return formattedObject
         })
         Object.assign(this.averagesessions.sessions, formattedObject)

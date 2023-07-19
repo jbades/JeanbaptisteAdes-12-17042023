@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 function LinechartTooltip ({ active, payload }) {
     if (active) {
@@ -19,13 +19,18 @@ export default function SessionLinechart ({data}) {
                 onMouseMove={(e) => {
                     console.log(e)
                     if (e.isTooltipActive === true) {
-                        let metricsContainer = document.querySelector('.recharts-surface')
-                        let rightSideOfBullet = e.activeCoordinate.x
+                        let metricsContainer = document.querySelector('.session-linechart__wrapper .recharts-surface').clientWidth
+                        let rightSideOfBullet = metricsContainer.clientWidth
                         console.log(rightSideOfBullet)
                     }
                 }}
             >
-                <XAxis dataKey="day" axisLine={false} tickLine={false} />
+                <XAxis 
+                    dataKey="day" 
+                    axisLine={false} 
+                    tickLine={false} 
+                    padding={{right:5, left:5}}
+                />
                 <Tooltip content={<LinechartTooltip />} />
                 <Line 
                     type="monotone" 
