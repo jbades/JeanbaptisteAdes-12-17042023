@@ -19,9 +19,10 @@ export default function SessionLinechart ({data}) {
                 onMouseMove={(e) => {
                     console.log(e)
                     if (e.isTooltipActive === true) {
-                        let metricsContainer = document.querySelector('.session-linechart__wrapper .recharts-surface').clientWidth
-                        let rightSideOfBullet = metricsContainer.clientWidth
-                        console.log(rightSideOfBullet)
+                        let metricContainer = document.querySelector('.session-linechart__wrapper')
+                        let xMouseHover = (e.activeCoordinate.x/metricContainer.clientWidth) * 100
+                        console.log("!!! metricContainer", metricContainer, "!!! rightSideOfBuller", xMouseHover)
+                        metricContainer.style.background = `linear-gradient(90deg, #ff0000 ${xMouseHover}%, #dd0006 ${xMouseHover}%`
                     }
                 }}
             >
