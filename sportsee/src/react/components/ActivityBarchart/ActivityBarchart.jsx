@@ -52,7 +52,7 @@ export default function ActivityBarchart ({data, minWeight, maxWeight}) {
                 }}
             >
                 <CartesianGrid vertical={false} fillOpacity={0.5} />
-                <XAxis dataKey="day" tickLine={false} />
+                <XAxis dataKey="day" tickLine={false} tick={{fontSize: 14}} dy={15} stroke="#9B9EAC" />
                 <YAxis yAxisId="calories" hide={true} />
                 <YAxis 
                     yAxisId="kilograms" 
@@ -63,7 +63,8 @@ export default function ActivityBarchart ({data, minWeight, maxWeight}) {
                     tickLine={false} 
                     tickCount="4" 
                     tickFormatter={formatYAxisTick} 
-                    domain={[minWeight, maxWeight]}
+                    dx={15}
+                    domain={['dataMin - 2', 'dataMax + 1']}  
                 />
                 <Tooltip content={<BarchartTooltip />} />
                 <Legend content={renderLegend}/>

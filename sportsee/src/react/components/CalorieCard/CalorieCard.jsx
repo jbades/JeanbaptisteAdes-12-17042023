@@ -1,5 +1,3 @@
-// import calorieCount from "../../../assets/calories-icon.svg"
-
 function CalorieCard({ dataValue, image, unit, name }) {
     return (
       <div className="calorie-card__wrapper">

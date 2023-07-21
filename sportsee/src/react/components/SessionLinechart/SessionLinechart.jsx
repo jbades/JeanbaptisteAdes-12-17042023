@@ -17,11 +17,9 @@ export default function SessionLinechart ({data}) {
             <LineChart 
                 data={data} 
                 onMouseMove={(e) => {
-                    console.log(e)
                     if (e.isTooltipActive === true) {
                         let metricContainer = document.querySelector('.session-linechart__wrapper')
                         let xMouseHover = (e.activeCoordinate.x/metricContainer.clientWidth) * 100
-                        console.log("!!! metricContainer", metricContainer, "!!! rightSideOfBuller", xMouseHover)
                         metricContainer.style.background = `linear-gradient(90deg, #ff0000 ${xMouseHover}%, #dd0006 ${xMouseHover}%`
                     }
                 }}
@@ -37,8 +35,9 @@ export default function SessionLinechart ({data}) {
                     type="monotone" 
                     dataKey="sessionLength" 
                     stroke="rgba(255, 255, 255, 0.6)" 
-                    dot={false} strokeWidth={1.5} 
-                    activeDot={{ r: 4, strokeWidth: 4, stroke: "white" }} 
+                    strokeWidth={1.5} 
+                    dot={false} 
+                    activeDot={{ r: 3, strokeWidth: 4, stroke: "white" }}
                 />
             </LineChart>
       </ResponsiveContainer>

@@ -9,7 +9,7 @@ function ScorePiechart ({data}) {
             <Pie
               dataKey="value"
               data={nodata}
-              outerRadius={70}
+              outerRadius={80}
               cx="50%" 
               cy="50%" 
               fill="#ffffff"
@@ -19,8 +19,8 @@ function ScorePiechart ({data}) {
               data={data} 
               cx="50%" 
               cy="50%" 
-              innerRadius={60} 
-              outerRadius={70} 
+              innerRadius={80} 
+              outerRadius={90} 
             >
               {data.map((entry, index) =>
                 index === 0 ? (

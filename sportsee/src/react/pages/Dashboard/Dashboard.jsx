@@ -12,22 +12,6 @@ import SkillsRadarchart from "../../components/SkillsRadarchart/SkillsRadarchart
 
 import User from "../../../classes/User";
 
-// creating a range buffer for ActivityBarchart component
-function calculateWeightRange(data) {
-  let minValue = Infinity;
-  let maxValue = -Infinity;
-
-  data.forEach(item => {
-    const weight = item.kilogram;
-    if (weight < minValue) minValue = weight;
-    if (weight > maxValue) maxValue = weight;
-  });
-  minValue *= 0.95
-  maxValue *= 1.05
-
-  return [minValue, maxValue];
-}
-
 export default function Dashboard() {
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
@@ -49,8 +33,6 @@ export default function Dashboard() {
     fetchUserData();
   }, [id]);
 
-  const [minWeight, maxWeight] = userData && userData.activity && userData.activity.sessions ? calculateWeightRange(userData.activity.sessions) : [null, null];
-
   if (!userData) {
     return <div className="loading-state">Loading...</div>;
   }
@@ -71,8 +53,8 @@ export default function Dashboard() {
           <div className="activity-barchart__title">Activité quotidienne</div>
           <ActivityBarchart
             data= {userData.activity.sessions}
-            minWeight= {minWeight}
-            maxWeight= {maxWeight}
+            minWeight= {userData.minWeight}
+            maxWeight= {userData.maxWeight}
           />
         </div>
           )}

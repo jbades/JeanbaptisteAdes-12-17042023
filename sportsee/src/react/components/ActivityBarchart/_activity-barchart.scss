@@ -1,43 +1,43 @@
 .recharts-legend-wrapper {
-    bottom: 197px !important;
+    bottom: 250px !important;
     left: unset !important;
     right: 50px !important;
     width: fit-content !important;
-}
 
-.barchart-legend {
+    .barchart-legend {
 
-    &__bullet {
-        height: 8px;
-        width: 8px;
-        border-radius: 50%;
-        &.kg {
-            background-color: #000000;
+        &__bullet {
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            &.kg {
+                background-color: #000000;
+            }
+            &.kcal {
+                background-color: #E60000;
+            }
         }
-        &.kcal {
-            background-color: #E60000;
+    
+        &__item {
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 5px;
+            align-items: center;
         }
-    }
-
-    &__item {
-        display: flex;
-        flex-flow: row nowrap;
-        gap: 5px;
-        align-items: center;
-    }
-
-    &__text {
-        font-size: 14px;
-        color: #74798C;
-        &.kg::before {
-            color: red;
+    
+        &__text {
+            font-size: 14px;
+            color: #74798C;
+            &.kg::before {
+                color: red;
+            }
         }
-    }
-
-    &__wrapper {
-        display: flex;
-        gap: 40px;
-    }
+    
+        &__wrapper {
+            display: flex;
+            gap: 40px;
+        }
+    }    
 }
 
 .barchart-tooltip {
@@ -67,9 +67,13 @@
 
     &__wrapper {
     //    width: 100%;
-       height: 200px;
+       height: 250px;
        background-color: #FBFBFB;
        border-radius: 5px;
+
+       .recharts-surface {
+            transform: scaleY(0.9) translateX(20px) translateY(-30px);
+        }
     }
 }
  

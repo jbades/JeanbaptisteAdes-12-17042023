@@ -4,7 +4,7 @@ aside {
 
 main {
    width: fit-content;
-   padding: 0 4em;
+   padding: 0 60px 0 80px;
 }
 
 .dashboard {
@@ -52,7 +52,7 @@ main {
    &__wrapper {
       display: flex;
       flex-flow: row nowrap;
-      gap: 20px;
+      gap: 40px;
       justify-content: space-between;
       width: 75vw;
    }
