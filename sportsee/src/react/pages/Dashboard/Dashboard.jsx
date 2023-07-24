@@ -20,7 +20,7 @@ export default function Dashboard() {
     const fetchUserData = async () => {
       try {
         const user = new User();
-        await user.fetchData(id);
+        await user.getData(id);
         await user.formatGeneralData();
         await user.formatPerformanceData();
         await user.formatAverageSessionData();
